@@ -204,6 +204,39 @@ public class MainGameController {
         }
     }
 
+    private void checkCollision() {
+        double dinoLeft = dino.getLayoutX();
+        double dinoRight = dinoLeft + dino.getFitWidth();
+        double dinoTop = dino.getLayoutY();
+        double dinoBottom = dinoTop + dino.getFitHeight();
+
+        if (kayu.isVisible()) {
+            double kayuLeft = kayu.getLayoutX() + 40;
+            double kayuRight = kayuLeft + kayu.getFitWidth() - 80;
+            double kayuTop = kayu.getLayoutY() + 8 ;
+            double kayuBottom = kayuTop + kayu.getFitHeight();
+
+            if (dinoRight > kayuLeft && dinoLeft < kayuRight &&
+                dinoBottom > kayuTop && dinoTop < kayuBottom) {
+                isGameRunning = false;
+                gameOver();
+                return;
+            }
+        }
+
+        if (batu.isVisible()) {
+            double batuLeft = batu.getLayoutX() + 40;
+            double batuRight = batuLeft + batu.getFitWidth() - 80;
+            double batuTop = batu.getLayoutY() + 5;
+            double batuBottom = batuTop + batu.getFitHeight();
+
+            if (dinoRight > batuLeft && dinoLeft < batuRight &&
+                dinoBottom > batuTop && dinoTop < batuBottom) {
+                gameOver();
+            }
+        }
+    }
+   
    private void updateScore() {
     double dinoRight = dino.getLayoutX() + dino.getFitWidth();
 
