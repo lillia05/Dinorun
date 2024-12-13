@@ -157,3 +157,25 @@ public class MainGameController {
             ensureMinDistance();
         }
     }
+
+   private void updateDinoPosition() {
+        velocityY += GRAVITY;                             
+        
+        if(dino.getLayoutY() <= 250){ 
+            dir = Dir.botbot;
+        }
+      
+        if(isDown) dino.setLayoutY(dino.getLayoutY() + 9); 
+        
+        if(dir == Dir.upup){ //&& dino.getLayoutY() < 400){ 
+            dino.setLayoutY(dino.getLayoutY() - 13); // kalo dia UP || 30 
+        }
+        else if(dir == Dir.botbot){ //&& dino.getLayoutY() < 400){
+            dino.setLayoutY(dino.getLayoutY() + velocityY);
+        }
+      
+        if (dino.getLayoutY() > 400) {
+            dino.setLayoutY(400);
+            velocityY = 0;
+        }
+    }
