@@ -126,3 +126,34 @@ public class MainGameController {
         };
         gameLoop.start();
     }
+
+   private void configureObstacle(ImageView obstacle, double x) {
+        obstacle.setFitWidth(100);
+        obstacle.setFitHeight(70);
+        obstacle.setLayoutX(x);
+        obstacle.setLayoutY(460);
+        obstacle.setPreserveRatio(true);
+    }
+
+    private void moveObstacle(ImageView obstacle) {
+        if (obstacle.isVisible()) {
+            obstacle.setLayoutX(obstacle.getLayoutX() - obstacleSpeed);
+
+            if (obstacle.getLayoutX() + obstacle.getFitWidth() < 0) {
+                obstacle.setVisible(false);
+            }
+        }
+    }
+
+    private void spawnObstacle() {
+        if (!kayu.isVisible() && !batu.isVisible()) {
+            if (random.nextBoolean()) {
+                kayu.setLayoutX(gameArea.getPrefWidth());
+                kayu.setVisible(true);
+            } else {
+                batu.setLayoutX(gameArea.getPrefWidth());
+                batu.setVisible(true);
+            }
+            ensureMinDistance();
+        }
+    }
