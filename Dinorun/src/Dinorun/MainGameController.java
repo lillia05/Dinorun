@@ -49,7 +49,7 @@ public class MainGameController {
     boolean isDown = false;
 
     private double velocityY = 0;
-    private final double GRAVITY = 0.1;
+    private final double GRAVITY = 0.15;
 
     private final Image kayuImage = new Image(getClass().getResource("/resource/kayu.png").toExternalForm());
     private final Image batuImage = new Image(getClass().getResource("/resource/batu.png").toExternalForm());
@@ -87,7 +87,6 @@ public class MainGameController {
     }
 
      public void initialize() {
-
         kayu = new ImageView(kayuImage);
         batu = new ImageView(batuImage);
 
@@ -98,7 +97,6 @@ public class MainGameController {
         batu.setVisible(false);
 
         gameArea.getChildren().addAll(kayu, batu);
-
         root.setOnKeyPressed(this::handleKeyPress);
 
         AnimationTimer gameLoop = new AnimationTimer() {
@@ -197,7 +195,6 @@ public class MainGameController {
                 isDown = false;
                 break;
             case DOWN:
-               
                 dir = Dir.botbot;
                 isDown = true;
                 break;
@@ -313,3 +310,34 @@ public class MainGameController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+   abstract class Write{
+        String pesan;
+        public abstract void setPesan(String pesan);
+        public abstract String getPesan();
+    }
+    
+    class Message extends Write{
+        @Override
+        public void setPesan(String pesan){
+            this.pesan = pesan;
+        }
+        @Override
+        public String getPesan(){
+            return pesan;
+        }
+    }
+    
+    class AlertAlert extends Write{
+        @Override
+        public void setPesan(String pesan){
+            this.pesan = pesan;
+        }
+        
+        @Override
+        public String getPesan(){
+            return pesan;
+        }
+    }
+}
+   
