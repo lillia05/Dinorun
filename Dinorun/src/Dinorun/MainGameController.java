@@ -284,3 +284,24 @@ public class MainGameController {
     void downDINO(KeyEvent event) {}
     @FXML
     void moveDINO(KeyEvent event) {}
+
+private void gameOver() {
+        isGameRunning = false;
+        message.setPesan("    Game Over!\nFinal Score: ");
+        scoreLabel.setText(message.getPesan() + score);
+        
+        double centerX = ( (gameArea.getWidth() - scoreLabel.getWidth()) / 2) - 40;
+        double centerY = (gameArea.getHeight() - scoreLabel.getHeight()) / 2;
+
+        scoreLabel.setLayoutX(centerX);
+        scoreLabel.setLayoutY(centerY);
+
+        scoreLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: brown; -fx-alignment: center;");
+        
+        restartButton.setVisible(true);
+        
+        alertalert.setPesan("GAME OVER");
+        message.setPesan("Thank you for playing, your score : ");
+        
+        showAlert(Alert.AlertType.INFORMATION, alertalert.getPesan(), message.getPesan() + score );
+    }
