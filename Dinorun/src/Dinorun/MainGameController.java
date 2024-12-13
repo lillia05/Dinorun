@@ -281,11 +281,11 @@ public class MainGameController {
     }
     
     @FXML
-    void downDINO(KeyEvent event) {}
+      void downDINO(KeyEvent event) {}
     @FXML
-    void moveDINO(KeyEvent event) {}
+      void moveDINO(KeyEvent event) {}
 
-private void gameOver() {
+      private void gameOver() {
         isGameRunning = false;
         message.setPesan("    Game Over!\nFinal Score: ");
         scoreLabel.setText(message.getPesan() + score);
@@ -304,4 +304,12 @@ private void gameOver() {
         message.setPesan("Thank you for playing, your score : ");
         
         showAlert(Alert.AlertType.INFORMATION, alertalert.getPesan(), message.getPesan() + score );
+    }
+
+   private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
