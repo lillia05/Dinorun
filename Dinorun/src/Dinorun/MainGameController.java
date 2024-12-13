@@ -69,3 +69,25 @@ public class MainGameController {
     enum Dir{
         upup,botbot;
     }
+
+@FXML
+    private void backMenu(MouseEvent event){
+        try {
+            // Load file FXML untuk beranda
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("beranda.fxml"));
+            Parent mainMenuRoot = loader.load();
+
+            // Mendapatkan stage dari elemen saat ini
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Dashboard Dinorun !");
+
+            // Mengatur scene baru ke stage
+            Scene scene = new Scene(mainMenuRoot);
+            stage.setScene(scene);
+
+            // Tampilkan scene baru
+            stage.show();
+    } catch (Exception e) {
+        e.printStackTrace(); // Untuk debugging jika terjadi kesalahan
+        }
+    }
