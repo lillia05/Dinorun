@@ -81,8 +81,8 @@ public class MainGameController {
             stage.setScene(scene);
 
             stage.show();
-    } catch (Exception e) {
-        e.printStackTrace(); 
+       } catch (Exception e) {
+           e.printStackTrace(); 
         }
     }
 
@@ -194,7 +194,6 @@ public class MainGameController {
         }
     }
 
-
    private void updateScore() {
     double dinoRight = dino.getLayoutX() + dino.getFitWidth();
 
@@ -206,7 +205,6 @@ public class MainGameController {
         }
     }
 
-   
     if (kayu.isVisible()) {
         double kayuRight = kayu.getLayoutX() + kayu.getFitWidth();
         if (dinoRight > kayuRight ){
@@ -216,3 +214,30 @@ public class MainGameController {
     }
     scoreLabel.setText("Score: " + score);
 }
+
+   @FXML
+    private void restartGame() {
+        isGameRunning = true;
+        score = 0;
+        scoreLabel.setText("Score: 0");
+        scoreLabel.setLayoutX(10);
+        scoreLabel.setLayoutY(10);                          
+        scoreLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: normal; -fx-text-fill: black; -fx-alignment: center;");
+
+        restartButton.setVisible(false);
+        dino.requestFocus();
+
+        kayu.setLayoutX(900);
+        kayu.setVisible(false);
+        batu.setLayoutX(1100);
+        batu.setVisible(false);
+
+        obstacleSpeed = 5.0;
+        lastUpdateTime = System.nanoTime();
+        lastSpawnTime = System.nanoTime();
+    }
+    
+    @FXML
+    void downDINO(KeyEvent event) {}
+    @FXML
+    void moveDINO(KeyEvent event) {}
