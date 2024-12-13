@@ -51,7 +51,6 @@ public class MainGameController {
     private double velocityY = 0;
     private final double GRAVITY = 0.1;
 
-    
     private final Image kayuImage = new Image(getClass().getResource("/resource/kayu.png").toExternalForm());
     private final Image batuImage = new Image(getClass().getResource("/resource/batu.png").toExternalForm());
     private final Random random = new Random();
@@ -64,30 +63,66 @@ public class MainGameController {
     Dir dir = Dir.botbot; 
     Message message = new Message();
     AlertAlert alertalert = new AlertAlert();
-    
-
+   
     enum Dir{
         upup,botbot;
     }
 
-@FXML
+   @FXML
     private void backMenu(MouseEvent event){
         try {
-            // Load file FXML untuk beranda
             FXMLLoader loader = new FXMLLoader(getClass().getResource("beranda.fxml"));
             Parent mainMenuRoot = loader.load();
 
-            // Mendapatkan stage dari elemen saat ini
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Dashboard Dinorun !");
 
-            // Mengatur scene baru ke stage
             Scene scene = new Scene(mainMenuRoot);
             stage.setScene(scene);
 
-            // Tampilkan scene baru
             stage.show();
     } catch (Exception e) {
-        e.printStackTrace(); // Untuk debugging jika terjadi kesalahan
+        e.printStackTrace(); 
         }
+    }
+
+     public void initialize() {
+
+        kayu = new ImageView(kayuImage);
+        batu = new ImageView(batuImage);
+
+        configureObstacle(kayu, 900);
+        configureObstacle(batu, 1100);
+
+        kayu.setVisible(false);
+        batu.setVisible(false);
+
+        gameArea.getChildren().addAll(kayu, batu);
+
+        root.setOnKeyPressed(this::handleKeyPress);
+
+        AnimationTimer gameLoop = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (isGameRunning) {
+                    moveObstacle(kayu);
+                    moveObstacle(batu);
+
+                    updateDinoPosition();
+                    checkCollision();
+
+                    if (now - lastSpawnTime > OBSTACLE_SPAWN_INTERVAL) {
+                        spawnObstacle();
+                        lastSpawnTime = now;
+                    }
+
+                    if (now - lastUpdateTime > SPEED_INCREASE_INTERVAL) {
+                        increaseObstacleSpeed();
+                        lastUpdateTime = now;
+                    }
+                    updateScore();
+                }
+            }
+        };
+        gameLoop.start();
     }
