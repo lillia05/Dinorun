@@ -167,10 +167,10 @@ public class MainGameController {
       
         if(isDown) dino.setLayoutY(dino.getLayoutY() + 9); 
         
-        if(dir == Dir.upup){ //&& dino.getLayoutY() < 400){ 
-            dino.setLayoutY(dino.getLayoutY() - 13); // kalo dia UP || 30 
+        if(dir == Dir.upup){ 
+            dino.setLayoutY(dino.getLayoutY() - 13); 
         }
-        else if(dir == Dir.botbot){ //&& dino.getLayoutY() < 400){
+        else if(dir == Dir.botbot){ 
             dino.setLayoutY(dino.getLayoutY() + velocityY);
         }
       
@@ -193,3 +193,26 @@ public class MainGameController {
                 break;
         }
     }
+
+
+   private void updateScore() {
+    double dinoRight = dino.getLayoutX() + dino.getFitWidth();
+
+    if (batu.isVisible()) {
+        double batuRight = batu.getLayoutX() + batu.getFitWidth();
+        if (dinoRight > batuRight ){
+            score++;
+            batu.setManaged(true); 
+        }
+    }
+
+   
+    if (kayu.isVisible()) {
+        double kayuRight = kayu.getLayoutX() + kayu.getFitWidth();
+        if (dinoRight > kayuRight ){
+            score++;
+            kayu.setManaged(true); 
+        }
+    }
+    scoreLabel.setText("Score: " + score);
+}
