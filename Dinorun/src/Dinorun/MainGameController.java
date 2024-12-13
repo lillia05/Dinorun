@@ -158,6 +158,16 @@ public class MainGameController {
         }
     }
 
+    private void ensureMinDistance() {
+        if (Math.abs(kayu.getLayoutX() - batu.getLayoutX()) < 150) {
+            batu.setLayoutX(kayu.getLayoutX() + 200);
+        }
+    }
+
+    private void increaseObstacleSpeed() {
+        obstacleSpeed += 0.1;
+    }
+   
    private void updateDinoPosition() {
         velocityY += GRAVITY;                             
         
