@@ -1,0 +1,21 @@
+package Dinorun;
+
+import java.util.Random;
+import javafx.animation.AnimationTimer;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import static javafx.scene.input.KeyCode.DOWN;
+import static javafx.scene.input.KeyCode.UP;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
