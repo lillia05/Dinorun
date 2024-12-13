@@ -179,3 +179,17 @@ public class MainGameController {
             velocityY = 0;
         }
     }
+
+   private void handleKeyPress(KeyEvent event) {
+        switch (event.getCode()) {
+            case UP:
+                if (dino.getLayoutY() == 400 ) dir = Dir.upup;
+                isDown = false;
+                break;
+            case DOWN:
+               
+                dir = Dir.botbot;
+                isDown = true;
+                break;
+        }
+    }
