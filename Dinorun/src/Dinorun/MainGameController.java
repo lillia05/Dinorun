@@ -83,6 +83,12 @@ public class MainGameController {
             stage.show();
        } catch (Exception e) {
            e.printStackTrace(); 
+           
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("Error");
+           alert.setHeaderText("Gagal Memuat Halaman Menu");
+           alert.setContentText("Terjadi kesalahan saat memuat halaman utama. Silakan periksa file FXML atau coba lagi.");
+           alert.showAndWait();
         }
     }
 
@@ -297,8 +303,8 @@ public class MainGameController {
         
         restartButton.setVisible(true);
         
-        alertalert.setPesan("GAME OVER");
-        message.setPesan("Thank you for playing, your score : ");
+        alertalert.setPesan("Game Over!");
+        message.setPesan("Final Score: ");
         
         showAlert(Alert.AlertType.INFORMATION, alertalert.getPesan(), message.getPesan() + score );
     }
